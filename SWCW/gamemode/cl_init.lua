@@ -24,30 +24,14 @@ ply:SetTeam( 3, 4 )
 
 end )
 
-function HUDHide( swcw )
-	for k, v in pairs{"CHUDHealth","CHUDBattery","CHUDAmmo","CHUDSeconddaryAmmo"} do
-		if swcw == v then return false
-		end
-	end
-end
-hook.Add("HUDShouldDraw","HUDHide","HUDAmmo","HUDSeconddaryAmmo",HUDHide)
+hook.Add("HUDShouldDraw","HUDHide",HUDHide)
 
-function GM:HUDPaint()
-	self.BaseClass:HUDPaint()
-		local ply = LocalPlayer()
-		local HP = LocalPlayer():Health()
-		local ARM = LocalPlayer():Armor()
-		local wep = LocalPlayer():GetActiveWeapon()
-	surface.CreateFont( "Font", 
-                    {
-                    font    = "Century Gothic Bold",
-                    size    = 25,
-                    weight  = 400,
-                    antialias = false,
-                    shadow = false
-            })
-				surface.SetTextColor( 20, 160, 50, 255 )
-	surface.SetTextPos(10, 10)
-	surface.SetFont( "Font" )
-	surface.DrawText( HP ) 
-end
+function NewHUD()
+	local ply = LocalPlayer()
+	local HP = ply:Health()
+	local Armor = ply:Armor()
+	
+	draw.RoundedBox( 4, 130, ScrH() - 100, 200, 40, Color( 40, 40, 40 ) )
+	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 40, Color( 255, 0, 0 ) )
+	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 15, Color( 255, 255, 255 ) )
+hook.Add("HUDPant", "SWCWHUD", NewHUD)

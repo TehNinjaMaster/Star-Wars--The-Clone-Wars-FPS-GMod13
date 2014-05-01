@@ -1,0 +1,11 @@
+"SWCW"
+{
+	"base"		"base"
+	"title"		"SWCW"
+	"maps"		""
+	"menusystem"	"1"
+	"settings"
+	{
+
+	}
+}

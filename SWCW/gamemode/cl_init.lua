@@ -16,27 +16,6 @@ Team = {}
 Team[1] = "Republic"
 Team[2] = "Cis"
 
-
-ply = LocalPlayer()
-
-concommand.Add( "SWCW_SETTEAM", function()
-
-ply:SetTeam( 3, 4 )
-
-end )
-
-hook.Add("HUDShouldDraw","HUDHide",HUDHide)
-
-function NewHUD()
-	local ply = LocalPlayer()
-	local HP = ply:Health()
-	local Armor = ply:Armor()
-	
-	draw.RoundedBox( 4, 130, ScrH() - 100, 200, 40, Color( 40, 40, 40 ) )
-	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 40, Color( 255, 0, 0 ) )
-	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 15, Color( 255, 255, 255 ) )
-end
-hook.Add("HUDPant", "SWCWHUD", NewHUD)
 //Derma
 
 function STM()

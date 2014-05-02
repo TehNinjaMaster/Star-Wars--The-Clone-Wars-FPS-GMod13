@@ -16,6 +16,7 @@ Team = {}
 Team[1] = "Republic"
 Team[2] = "Cis"
 
+
 ply = LocalPlayer()
 
 concommand.Add( "SWCW_SETTEAM", function()
@@ -34,4 +35,35 @@ function NewHUD()
 	draw.RoundedBox( 4, 130, ScrH() - 100, 200, 40, Color( 40, 40, 40 ) )
 	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 40, Color( 255, 0, 0 ) )
 	draw.RoundedBox( 4, 130, ScrH() - 100, math.Clamp( HP, 0, 200 )*2, 15, Color( 255, 255, 255 ) )
+end
 hook.Add("HUDPant", "SWCWHUD", NewHUD)
+//Derma
+
+function STM()
+	local changeteam = vgui.Create("DFrame")
+	local button = vgui.Create("DButton")
+	local team2 = vgui.Create("DButton")
+		changeteam:SetPos(ScrW()/2 - 225, ScrH()/2)
+		changeteam:SetSize(450, 200)
+		changeteam:SetVisible(true)
+		changeteam:SetTitle("Change/Select Team")
+		changeteam:SetDraggable(false)
+		changeteam:ShowCloseButton(true)
+		changeteam:MakePopup()
+		
+		button:SetParent(changeteam)
+		button:SetText("Team Republic")
+		button:SetPos(5, 30)
+		button:SetSize(150, 50)
+		button.DoClick = function()
+			RunConsoleCommand("sw_setteam1")
+	end
+		team2:SetParent(changeteam)
+		team2:SetText("Team CIS")
+		team2:SetPos(5, 70)
+		team2:SetSize(150, 50)
+		team2.DoClick = function()
+			RunConsoleCommand("sw_setteam2")
+	end
+end
+usermessage.Hook("ChangeTeam", STM)

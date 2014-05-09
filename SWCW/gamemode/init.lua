@@ -84,7 +84,7 @@ end )
 end )
 
 	concommand.Add( "sw_help",function(ply)
-		RunConsoleCommand("ulx motd")
+		RunConsoleCommand("ulx", "motd")
 	end )
 end
 
